@@ -25,59 +25,85 @@
     <table>
       <tr>
         <th>Semester</th>
-        <th>College Fee</th>
+        <th>Tuition Fee</th>
         <th>Hostel Fee</th>
-        <th>Other expenses</th>
         <th>Total per sem</th>
         <th>Per year</th>
         <th>Approx per month</th>
       </tr>
-      <tr><td>1</td><td>90,000</td><td>50,000</td><td>15,000</td><td>1,55,000</td><td></td><td></td></tr>
-      <tr><td>2</td><td>65,000</td><td>46,000</td><td>15,000</td><td>1,26,000</td><td>281,000</td><td>23,500</td></tr>
-      <tr><td>3</td><td>65,000</td><td>50,000</td><td>15,000</td><td>1,30,000</td><td></td><td></td></tr>
-      <tr><td>4</td><td>65,000</td><td>46,000</td><td>15,000</td><td>1,26,000</td><td>256,000</td><td>22,000</td></tr>
-      <tr><td>5</td><td>65,000</td><td>50,000</td><td>15,000</td><td>1,30,000</td><td></td><td></td></tr>
-      <tr><td>6</td><td>65,000</td><td>46,000</td><td>15,000</td><td>1,26,000</td><td>256,000</td><td>22,000</td></tr>
-      <tr><td>7</td><td>65,000</td><td>50,000</td><td>15,000</td><td>1,30,000</td><td></td><td></td></tr>
-      <tr><td>8</td><td>65,000</td><td>46,000</td><td>15,000</td><td>1,26,000</td><td>256,000</td><td>22,000</td></tr>
-      <tr><td></td><td></td><td></td><td></td><td>10,49,000</td><td></td><td></td></tr>
+      <tr><td>1</td><td>90,000</td><td>50,000</td><td>140,000</td><td></td><td></td></tr>
+      <tr><td>2</td><td>65,000</td><td>46,000</td><td>111,000</td><td>251,000</td><td>23,500</td></tr>
+      <tr><td>3</td><td>65,000</td><td>50,000</td><td>115,000</td><td></td><td></td></tr>
+      <tr><td>4</td><td>65,000</td><td>46,000</td><td>111,000</td><td>226,000</td><td>22,000</td></tr>
+      <tr><td>5</td><td>65,000</td><td>50,000</td><td>115,000</td><td></td><td></td></tr>
+      <tr><td>6</td><td>65,000</td><td>46,000</td><td>111,000</td><td>226,000</td><td>22,000</td></tr>
+      <tr><td>7</td><td>65,000</td><td>50,000</td><td>115,000</td><td></td><td></td></tr>
+      <tr><td>8</td><td>65,000</td><td>46,000</td><td>111,000</td><td>226,000</td><td>22,000</td></tr>
+      <tr><td></td><td></td><td></td><td></td><td>929,000</td><td></td></tr>
     </table>
-<h2>Donations received so far:</h2>
-<table id="donation-table">
-  <tr>
-    <th>Donor</th>
-    <th>Amount (₹)</th>
-  </tr>
-  <tr><td>Prof. UG</td><td class="amount">10,000</td></tr>
-  <tr><td>Dr. PK</td><td class="amount">15,000</td></tr>
-  <tr><td>Mr. DB</td><td class="amount">10,000</td></tr>
-  <tr><td>Prof. SA</td><td class="amount">12,500</td></tr>
-  <tr><td>Prof. AB</td><td class="amount">15,000</td></tr>
-  <tr>
-    <td><strong>Total</strong></td>
-    <td><strong id="total-amount">Calculating...</strong></td>
-  </tr>
-  <tr>
-  <td colspan="2">
-    <strong>Target for Sem 1:</strong> ₹1,55,000
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <strong>You've helped achieve:</strong> 40.32% of the goal 🎯
-  </td>
-</tr>
-</table>
 
+    <h2>Donations received so far:</h2>
+    <table id="donation-table">
+      <tr>
+        <th>Donor</th>
+        <th>Amount (₹)</th>
+      </tr>
+      <tr><td>Prof. UG</td><td class="amount">10,000</td></tr>
+      <tr><td>Dr. PK</td><td class="amount">15,000</td></tr>
+      <tr><td>Mr. DB</td><td class="amount">10,000</td></tr>
+      <tr><td>Prof. SA</td><td class="amount">12,500</td></tr>
+      <tr><td>Prof. AB</td><td class="amount">15,000</td></tr>
+      <tr><td>Prof. GS</td><td class="amount">10,000</td></tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td><strong id="total-amount">Calculating...</strong></td>
+      </tr>
+	  <tr style="height: 10px;"></tr>
+	  <tr style="height: 10px;"></tr>
+      <tr>
+        <td colspan="2">
+          <strong>Tuition fee for Sem 1:</strong> ₹90,000
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" id="tuition-percent">
+          <strong>You've helped achieve:</strong> Calculating... 🎯
+        </td>
+      </tr>
+	  <tr style="height: 10px;"></tr>
+      <tr>
+        <td colspan="2">
+          <strong>Hostel fee for Sem 1:</strong> ₹50,000
+        </td>
+      </tr>      <tr>
+        <td colspan="2" id="hostel-percent">
+          <strong>Hostel fee coverage:</strong> Calculating...
+        </td>
+      </tr>
+    </table>
 
-<script>
-  // Calculate total from all cells with class "amount"
-  const amounts = document.querySelectorAll('.amount');
-  let total = 0;
-  amounts.forEach(cell => {
-    total += parseInt(cell.textContent.replace(/,/g, '')) || 0;
-  });
-  document.getElementById('total-amount').textContent = total.toLocaleString('en-IN');
-</script>
+    <script>
+      const amounts = document.querySelectorAll('.amount');
+      let total = 0;
+      amounts.forEach(cell => {
+        total += parseInt(cell.textContent.replace(/,/g, '')) || 0;
+      });
+
+      document.getElementById('total-amount').textContent = total.toLocaleString('en-IN');
+
+      const tuitionFee = 90000;
+      const hostelFee = 50000;
+
+      const tuitionPercent = Math.min((total / tuitionFee) * 100, 100);
+      const remaining = Math.max(total - tuitionFee, 0);
+      const hostelPercent = Math.min((remaining / hostelFee) * 100, 100);
+
+      document.getElementById('tuition-percent').innerHTML =
+        `<strong>You've helped achieve:</strong> ${tuitionPercent.toFixed(2)}% of the Tuition fee 🎯`;
+
+      document.getElementById('hostel-percent').innerHTML =
+        `<strong>Hostel fee coverage:</strong> ${hostelPercent.toFixed(2)}% of the Hostel fee 🏠`;
+    </script>
+  </div>
 </body>
 </html>
