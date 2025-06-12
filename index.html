@@ -6,7 +6,7 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 2rem; background: #f9f9f9; }
     .container { max-width: 800px; margin: auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h1 { color: #333; }
+    h1, h2 { color: #333; }
     p { line-height: 1.6; }
     table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
     th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #ddd; }
@@ -21,6 +21,7 @@
     <p>🔒 <strong>Donor names and personal details are not displayed</strong> on this page to respect confidentiality.</p>
     <p>✅ All contributions are acknowledged privately, and the total amount raised will be updated here for transparency.</p>
     <p>Your support means the world—thank you for helping make education accessible!</p>
+
 
     <table>
       <tr>
@@ -43,6 +44,7 @@
       <tr><td></td><td></td><td></td><td></td><td>10,49,000</td><td></td><td></td></tr>
     </table>
 
+
     <h2>Donations received so far:</h2>
     <table id="donation-table">
       <tr>
@@ -59,27 +61,39 @@
         <td><strong>Total</strong></td>
         <td><strong id="total-amount">Calculating...</strong></td>
       </tr>
-	  <tr style="height: 10px;"></tr>
-	  <tr style="height: 10px;"></tr>
+    </table>
+
+    <h2>Semester 1 Fee Collection Progress</h2>
+    <table id="sem1-progress">
       <tr>
-        <td colspan="2">
-          <strong>Tuition fee for Sem 1:</strong> ₹90,000
-        </td>
+        <th>Fee Type</th>
+        <th>Amount (₹)</th>
+        <th>Collected (₹)</th>
+        <th>% Collected</th>
       </tr>
       <tr>
-        <td colspan="2" id="tuition-percent">
-          <strong>You've helped achieve:</strong> Calculating... 🎯
-        </td>
+        <td>Tuition Fee</td>
+        <td>90,000</td>
+        <td id="tuition-collected">Calculating...</td>
+        <td id="tuition-percent">Calculating...</td>
       </tr>
-	  <tr style="height: 10px;"></tr>
       <tr>
-        <td colspan="2">
-          <strong>Hostel fee for Sem 1:</strong> ₹50,000
-        </td>
-      </tr>      <tr>
-        <td colspan="2" id="hostel-percent">
-          <strong>Hostel fee coverage:</strong> Calculating...
-        </td>
+        <td>Hostel Fee</td>
+        <td>50,000</td>
+        <td id="hostel-collected">Calculating...</td>
+        <td id="hostel-percent">Calculating...</td>
+      </tr>
+      <tr>
+        <td>Miscellaneous Fee</td>
+        <td>15,000</td>
+        <td id="misc-collected">Calculating...</td>
+        <td id="misc-percent">Calculating...</td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td><strong>1,55,000</strong></td>
+        <td id="total-collected"><strong>Calculating...</strong></td>
+        <td id="total-percent"><strong>Calculating...</strong></td>
       </tr>
     </table>
 
@@ -94,16 +108,25 @@
 
       const tuitionFee = 90000;
       const hostelFee = 50000;
+      const miscFee = 15000;
+      const totalFee = tuitionFee + hostelFee + miscFee;
 
-      const tuitionPercent = Math.min((total / tuitionFee) * 100, 100);
-      const remaining = Math.max(total - tuitionFee, 0);
-      const hostelPercent = Math.min((remaining / hostelFee) * 100, 100);
+      const tuitionCollected = Math.min(total, tuitionFee);
+      const remainingAfterTuition = Math.max(total - tuitionFee, 0);
+      const hostelCollected = Math.min(remainingAfterTuition, hostelFee);
+      const remainingAfterHostel = Math.max(remainingAfterTuition - hostelFee, 0);
+      const miscCollected = Math.min(remainingAfterHostel, miscFee);
+      const totalCollected = tuitionCollected + hostelCollected + miscCollected;
 
-      document.getElementById('tuition-percent').innerHTML =
-        `<strong>You've helped achieve:</strong> ${tuitionPercent.toFixed(2)}% of the Tuition fee 🎯`;
+      document.getElementById('tuition-collected').textContent = tuitionCollected.toLocaleString('en-IN');
+      document.getElementById('hostel-collected').textContent = hostelCollected.toLocaleString('en-IN');
+      document.getElementById('misc-collected').textContent = miscCollected.toLocaleString('en-IN');
+      document.getElementById('total-collected').textContent = totalCollected.toLocaleString('en-IN');
 
-      document.getElementById('hostel-percent').innerHTML =
-        `<strong>Hostel fee coverage:</strong> ${hostelPercent.toFixed(2)}% of the Hostel fee 🏠`;
+      document.getElementById('tuition-percent').textContent = ((tuitionCollected / tuitionFee) * 100).toFixed(2) + '%';
+      document.getElementById('hostel-percent').textContent = ((hostelCollected / hostelFee) * 100).toFixed(2) + '%';
+      document.getElementById('misc-percent').textContent = ((miscCollected / miscFee) * 100).toFixed(2) + '%';
+      document.getElementById('total-percent').textContent = ((totalCollected / totalFee) * 100).toFixed(2) + '%';
     </script>
   </div>
 </body>
